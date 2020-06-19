@@ -79,14 +79,16 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
     this.setActiveCard();
 
-    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
-    this.randomCards.push(this.activeCard);
 
+    this.getRandomCards();
 
 
   }
 
-
+  getRandomCards() {
+    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
+    this.randomCards.push(this.activeCard);
+  }
 
   // removeElementFromArray(array, value) {
   //   const arr = [...array];

@@ -19,7 +19,7 @@ export class SavannaGameService {
 
   getWords(): Observable<SavannaGameCard[]> {
 
-    return this.http.get(`https://afternoon-falls-25894.herokuapp.com/words?page=${WordsPageNumber.pageNumber}&group=${WordsPageNumber.wordsLevel}`)
+    return this.http.get(`https://api-rslang.herokuapp.com/words?page=${WordsPageNumber.pageNumber}&group=${WordsPageNumber.wordsLevel}`)
       .pipe(
         map((response: SavannaGameApi[]) => {
 
