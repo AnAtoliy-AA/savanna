@@ -1,0 +1,17 @@
+<p>savanna-game works!</p>
+<!-- <p>{ foreignWord }</p> -->
+
+  <div *ngIf="savannaGameCards && activeCard">
+    <div class="active-card">{{ activeCard.foreignWord }} </div>
+    <div class="native-words-container">
+      <div *ngFor="let card of randomCards" class="native-word-card"(click)="checkResult(card)"> {{ card.nativeWord }}</div>
+      <!-- <div class="native-word-card"(click)="checkResult()"> {{ randomCards[1]?.nativeWord }}</div>
+      <div class="native-word-card"(click)="checkResult()"> {{ randomCards[2]?.nativeWord }}</div>
+      <div class="native-word-card"(click)="checkResult()"> {{ randomCards[3]?.nativeWord }}</div> -->
+    </div>
+
+
+  </div>
+
+  <button (click)="getForeignWord()">Start game </button>
+

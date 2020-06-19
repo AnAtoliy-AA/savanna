@@ -1,0 +1,19 @@
+.active-card {
+  border: 2px solid green;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.native-words-container{
+ display: flex;
+ justify-content: space-around;
+
+  .native-word-card {
+    border: 2px solid green;
+    width: 100px;
+    text-align: center;
+  }
+}
+
