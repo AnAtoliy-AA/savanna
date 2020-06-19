@@ -51,13 +51,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     this.activeCard = this.savannaGameCards[this.getRandomNumber(WordsRandom.quantity)];
   }
 
-  // getNativeWordsArray() {
-  //   const nativeWordsArray = [];
-  //   const nativeWordCard = this.activeCard;
 
-  //   nativeWordsArray.push(nativeWordCard);
-  //   console.log('WORDS_ARRAY', nativeWordsArray);
-  // }
 
   getRandomNumber(maxValue: number) {
     return Math.floor(Math.random() * Math.floor(maxValue));
@@ -72,13 +66,8 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     ]
   }
 
-  checkResult(word: string) {
-    // return wordId === this.activeCard.
-    // this.getNativeWordsArray();
-    console.log('Result: ', word);
-    console.log('this ACTIVE', this.activeCard.wordId);
-
-    word === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
+  checkResult(wordId: string) {
+       wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
     this.setActiveCard();
     this.getRandomCards();
   }
@@ -92,8 +81,10 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   }
 
   getRandomCards() {
+   const randomActiveNativeWordPosition : number = this.getRandomNumber(this.randomCards.length + 1);
+// +1????????????????????? Don`t touch fourth word
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
-    this.randomCards.push(this.activeCard);
+    this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
   }
 
   // removeElementFromArray(array, value) {
