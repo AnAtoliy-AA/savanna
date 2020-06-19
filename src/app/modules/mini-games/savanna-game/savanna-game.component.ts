@@ -76,13 +76,19 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     // return wordId === this.activeCard.
     // this.getNativeWordsArray();
     console.log('Result: ', word);
+    console.log('this ACTIVE', this.activeCard.wordId);
 
+    word === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
     this.setActiveCard();
-
-
     this.getRandomCards();
+  }
 
+  notGuessTheWord() {
+    console.log('LEARN ENGLISH!!!');
+  }
 
+  guessTheWord() {
+    console.log('You are lucky!!');
   }
 
   getRandomCards() {
