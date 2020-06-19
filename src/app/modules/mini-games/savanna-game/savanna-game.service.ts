@@ -3,7 +3,7 @@ import { catchError, filter, map, shareReplay, switchMap } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SavannaGameApi } from '../savanna-game-api.model';
+import { SavannaGameApi } from './savanna-game-api.model';
 import { SavannaGameCard } from './savanna-game-card.model';
 
 enum WordsPageNumber {
