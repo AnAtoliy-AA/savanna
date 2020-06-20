@@ -40,7 +40,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     console.log("Destroy");
   }
 
-  getForeignWord() {
+  getForeignWord(): void {
     this.setActiveCard();
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
     this.randomCards.push(this.activeCard);
@@ -48,12 +48,21 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   }
 
   setActiveCard(): void {
-    this.activeCard = this.savannaGameCards[this.getRandomNumber(WordsRandom.quantity)];
+    const activeCardIndex = this.getRandomNumber(WordsRandom.quantity);
+
+    this.activeCard = this.remainGameCards[activeCardIndex];
+    console.log('INDEX:',activeCardIndex);
+
+    console.log('REMAINS GAME CARDS:', this.remainGameCards);
+    this.remainGameCards.splice(activeCardIndex, 1);
+
+    console.log('REMAINS GAME CARDS:', this.remainGameCards);
+
   }
 
 
 
-  getRandomNumber(maxValue: number) {
+  getRandomNumber(maxValue: number): number {
     return Math.floor(Math.random() * Math.floor(maxValue));
   }
 
@@ -66,21 +75,21 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     ]
   }
 
-  checkResult(wordId: string) {
+  checkResult(wordId: string): void {
        wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
     this.setActiveCard();
     this.getRandomCards();
   }
 
-  notGuessTheWord() {
+  notGuessTheWord(): void {
     console.log('LEARN ENGLISH!!!');
   }
 
-  guessTheWord() {
+  guessTheWord(): void {
     console.log('You are lucky!!');
   }
 
-  getRandomCards() {
+  getRandomCards(): void {
    const randomActiveNativeWordPosition : number = this.getRandomNumber(this.randomCards.length + 1);
 // +1????????????????????? Don`t touch fourth word
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
