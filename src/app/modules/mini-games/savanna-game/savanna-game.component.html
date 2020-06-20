@@ -1,17 +1,24 @@
 <p>savanna-game works!</p>
 <!-- <p>{ foreignWord }</p> -->
-<div class="lives">lives: {{ lives }}</div>
-  <div *ngIf="savannaGameCards && activeCard">
-    <div class="active-card">{{ activeCard.foreignWord }} </div>
-    <div class="native-words-container">
-      <div *ngFor="let card of randomCards" class="native-word-card"(click)="checkResult(card.wordId)"> {{ card.nativeWord }}</div>
-      <!-- <div class="native-word-card"(click)="checkResult()"> {{ randomCards[1]?.nativeWord }}</div>
-      <div class="native-word-card"(click)="checkResult()"> {{ randomCards[2]?.nativeWord }}</div>
-      <div class="native-word-card"(click)="checkResult()"> {{ randomCards[3]?.nativeWord }}</div> -->
-    </div>
+<h1>SAVANNAH</h1>
 
+<div class="loader"></div>
+<button (click)="getForeignWord()">Start game </button>
 
+<div *ngIf="savannaGameCards && activeCard">
+  <div class="lives">lives: {{ lives }}</div>
+  <div class="active-card-container">
+    <div class="active-card active-card-fall">{{ activeCard.foreignWord }} </div>
   </div>
 
-  <button (click)="getForeignWord()">Start game </button>
+  <div class="native-words-container">
+    <div *ngFor="let card of randomCards" class="native-word-card" (click)="checkResult(card.wordId)">
+      {{ card.nativeWord }}</div>
+    <!-- <div class="native-word-card"(click)="checkResult()"> {{ randomCards[1]?.nativeWord }}</div>
+      <div class="native-word-card"(click)="checkResult()"> {{ randomCards[2]?.nativeWord }}</div>
+      <div class="native-word-card"(click)="checkResult()"> {{ randomCards[3]?.nativeWord }}</div> -->
+  </div>
+
+
+</div>
 
