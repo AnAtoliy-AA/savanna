@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Observable, pipe } from 'rxjs';
 import { catchError, filter, first, map, switchMap } from 'rxjs/operators';
 
@@ -8,6 +8,27 @@ import { SavannaGameService } from './savanna-game.service';
 // enum WordsRandom {
 //   quantity = 20,
 // }
+
+// export enum KEY_CODE {
+//   NUMBER_ONE = 49,
+//   NUMBER_TWO = 50,
+//   NUMBER_THREE = 51,
+//   NUMBER_FOUR = 52,
+// }
+
+export enum KEY_CODE {
+  NUMBER_ONE = 1,
+  NUMBER_TWO = 2,
+  NUMBER_THREE = 3,
+  NUMBER_FOUR = 4,
+}
+
+export enum CARD_NUMBER {
+  FIRST = 0,
+  SECOND = 1,
+  THIRD = 2,
+  FOURTH = 3,
+}
 @Component({
   selector: 'app-savanna-game',
   templateUrl: './savanna-game.component.html',
@@ -117,6 +138,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   checkResult(wordId: string): void {
     wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
+    console.log('THIS_KEY_RANDOM_CARDS', this.randomCards);
 
   }
 
@@ -128,17 +150,18 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     this.mistakes++;
     // this.setActiveCard();
     // this.getRandomCards();
-    console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
+    console.log('REMAIN CARDS LNGT mist: ', this.remainGameCards.length);
   }
 
   guessTheWord(): void {
     console.log('You are lucky!!');
     console.log('good sound');
     this.rightWords++;
+    console.log('REMAIN CARDS LNGT befor: ', this.remainGameCards.length);
     this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, this.activeCard);
     // this.setActiveCard();
     this.getRandomCards();
-    console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
+    console.log('REMAIN CARDS LNGT after: ', this.remainGameCards.length);
   }
 
   getRandomCards(): void {
@@ -164,4 +187,29 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     console.log('YOU HAVE Right Words: ', this.rightWords);
   }
 
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    console.log(event);
+
+    if (event.key === KEY_CODE.NUMBER_ONE.toString()) {
+      console.log('1',this.randomCards[0].wordId);
+      this.checkResult(this.randomCards[CARD_NUMBER.FIRST].wordId);
+    }
+
+    if (event.key === KEY_CODE.NUMBER_TWO.toString()) {
+      console.log('2',this.randomCards[1].wordId);
+      this.checkResult(this.randomCards[CARD_NUMBER.SECOND].wordId);
+    }
+    if (event.key === KEY_CODE.NUMBER_THREE.toString()) {
+      console.log('3',this.randomCards[2].wordId);
+      this.checkResult(this.randomCards[CARD_NUMBER.THIRD].wordId);
+    }
+    if (event.key === KEY_CODE.NUMBER_FOUR.toString()) {
+      console.log('4',this.randomCards[3].wordId);
+      this.checkResult(this.randomCards[CARD_NUMBER.FOURTH].wordId);
+    }
+  }
+
 }
+
+
