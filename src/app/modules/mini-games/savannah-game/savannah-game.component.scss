@@ -1,18 +1,76 @@
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+.start-screen {
+
+  text-align: center;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    margin-top: 10VH;
+  }
+
+  .loader {
+    margin-left: auto;
+    margin-right: auto;
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .start-button {
+   margin-top: 40VH;
+  }
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.hidden {
+  display: none;
+}
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
 }
 
+.close:hover {
+  opacity: 1;
+}
 
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
+}
 
 
 .active-card-container {
@@ -37,12 +95,14 @@
     // animation-duration: 2s;
     // animation-timing-function: ease;
     // animation-iteration-count: infinite;
-     animation: active-card-fall 4s ease infinite;
+    animation: active-card-fall 4s ease infinite;
   }
+
   @keyframes active-card-fall {
     0% {
       top: 0;
     }
+
     100% {
       top: 200px;
     }
@@ -52,23 +112,24 @@
     animation-name: none;
     // animation-play-state: paused;;
   }
-//   .active-card:hover {
-//     background-color: #FFCCCC;
-//     width: 200px;
-//     height: 200px;
-//     -webkit-transform: rotate(180deg);
-//     transform: rotate(180deg);
-//     transform: translateY(500);
-// }
+
+  //   .active-card:hover {
+  //     background-color: #FFCCCC;
+  //     width: 200px;
+  //     height: 200px;
+  //     -webkit-transform: rotate(180deg);
+  //     transform: rotate(180deg);
+  //     transform: translateY(500);
+  // }
 
 }
 
 
 
-.native-words-container{
- display: flex;
- justify-content: space-around;
- padding-top: 40VH;
+.native-words-container {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 40VH;
 
   .native-word-card {
     border: 2px solid green;
@@ -76,5 +137,3 @@
     text-align: center;
   }
 }
-
-

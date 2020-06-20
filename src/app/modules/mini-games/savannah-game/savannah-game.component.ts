@@ -52,16 +52,20 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
   mistakes: number = 0;
 
+  isHiddenDescription: boolean = false;
+
+  isHiddenLoader: boolean = true;
+
 
   // nativeWordsArray: Array = [];
 
   ngOnInit(): void {
-    this.savannahGameService.getWords()
-      .pipe(first())
-      .subscribe(words => {
-        this.savannahGameCards = words;
-        this.remainGameCards = [...this.savannahGameCards];
-      })
+    // this.savannahGameService.getWords()
+    //   .pipe(first())
+    //   .subscribe(words => {
+    //     this.savannahGameCards = words;
+    //     this.remainGameCards = [...this.savannahGameCards];
+    //   })
 
   }
 
@@ -69,7 +73,23 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
     console.log("Destroy");
   }
 
+startGame(): void {
+this.isHiddenDescription = true;
+this.isHiddenLoader = false;
+   this.savannahGameService.getWords()
+      .pipe(first())
+      .subscribe(words => {
+        this.savannahGameCards = words;
+        this.remainGameCards = [...this.savannahGameCards];
+        this.getForeignWord();
+      })
+// this.getForeignWord();
+// setTimeout(this.getForeignWord, 3000);
+}
+
+
   getForeignWord(): void {
+    this.isHiddenLoader = true;
     this.setActiveCard();
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
     this.randomCards.push(this.activeCard);

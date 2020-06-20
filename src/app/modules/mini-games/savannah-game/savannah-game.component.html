@@ -1,11 +1,20 @@
 <p>savannah-game works!</p>
 <!-- <p>{ foreignWord }</p> -->
-<h1>SAVANNAH</h1>
-
-<div class="loader"></div>
-<button (click)="getForeignWord()">Start game </button>
+<div class="start-screen">
+  <div class="close"></div>
+  <div class="start-description" [ngClass]="{hidden:isHiddenDescription}">
+    <h1>SAVANNAH</h1>
+    <p>The Savannah training helps you build your vocabulary.</p>
+  </div>
+  <div class="loader-container" [ngClass]="{hidden:isHiddenLoader}">
+    <div class="loader"></div>
+    <p>Use keys 1, 2, 3, and 4 to give a quick answer</p>
+  </div>
+  <button (click)="startGame()" class="start-button" [ngClass]="{hidden:isHiddenDescription}">Start game </button>
+</div>
 
 <div *ngIf="savannahGameCards && activeCard">
+  <div class="close"></div>
   <div class="lives">lives: {{ lives }}</div>
   <div class="active-card-container">
     <div class="active-card active-card-fall">{{ activeCard.foreignWord }} </div>
@@ -21,4 +30,3 @@
 
 
 </div>
-
