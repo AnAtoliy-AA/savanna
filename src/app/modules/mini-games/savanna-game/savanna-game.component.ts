@@ -27,6 +27,8 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   lives: number = 5;
 
+  rightWords: number = 0;
+
   mistakes: number = 0;
 
 
@@ -55,7 +57,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   //TODO
   setActiveCard(): void {
-    const activeCardIndex :number = this.getRandomNumber(this.remainGameCards.length);
+    const activeCardIndex: number = this.getRandomNumber(this.remainGameCards.length);
 
     this.activeCard = this.remainGameCards[activeCardIndex];
 
@@ -68,7 +70,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     // this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, activeCardIndex);
 
     // console.log('REMAINS GAME CARDS:', this.remainGameCards);
-// console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
+    // console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
   }
 
   //  removeElementFromArray(array, index: number) {
@@ -81,7 +83,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   // }
   removeElementFromArray(array, value) {
     // const arr = [...array];
-     const index : number= array.indexOf(value);
+    const index: number = array.indexOf(value);
 
     array.splice(index, 1);
 
@@ -93,17 +95,28 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     return Math.floor(Math.random() * Math.floor(maxValue));
   }
 
-  getThreeRandomCardsRandomNumbers(cards: SavannaGameCard[]): [SavannaGameCard, SavannaGameCard, SavannaGameCard] {
-    const length = cards.length;
-    return [
-      cards[this.getRandomNumber(length)],
-      cards[this.getRandomNumber(length)],
-      cards[this.getRandomNumber(length)],
-    ]
+  getThreeRandomCardsRandomNumbers(cards: SavannaGameCard[]): SavannaGameCard[] {
+    const ar = [...cards];
+    const length = 3;
+
+    this.removeElementFromArray(ar, this.activeCard);
+
+    const result = [];
+    for (let i = 0; i < length; i++) {
+      // const result = [ar[this.getRandomNumber(length)]];
+      let index = this.getRandomNumber(ar.length);
+      let curCard = ar[index];
+      ar.splice(index, 1);
+      result.push(curCard);
+
+
+    }
+
+    return result;
   }
 
   checkResult(wordId: string): void {
-       wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
+    wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
 
   }
 
@@ -111,25 +124,27 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     console.log('LEARN ENGLISH!!!');
     console.log('bad sound');
     this.lives--;
-    this.lives === 0 ? this.gameOver() : console.log('ss');
+    this.lives === 0 ? this.gameOver() : this.getRandomCards();
     this.mistakes++;
-    this.setActiveCard();
-    this.getRandomCards();
+    // this.setActiveCard();
+    // this.getRandomCards();
     console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
   }
 
   guessTheWord(): void {
     console.log('You are lucky!!');
     console.log('good sound');
+    this.rightWords++;
     this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, this.activeCard);
-    this.setActiveCard();
+    // this.setActiveCard();
     this.getRandomCards();
     console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
   }
 
   getRandomCards(): void {
-   const randomActiveNativeWordPosition : number = this.getRandomNumber(this.randomCards.length);
-// +1????????????????????? Don`t touch fourth word
+    this.setActiveCard();
+    const randomActiveNativeWordPosition: number = this.getRandomNumber(this.randomCards.length);
+    // +1????????????????????? Don`t touch fourth word
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
   }
@@ -146,6 +161,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   gameOver(): void {
     console.log('GAme OVER!!!');
     console.log('YOU HAVE Mistakes: ', this.mistakes);
+    console.log('YOU HAVE Right Words: ', this.rightWords);
   }
 
 }
