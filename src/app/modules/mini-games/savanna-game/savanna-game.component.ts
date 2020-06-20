@@ -5,9 +5,9 @@ import { catchError, filter, first, map, switchMap } from 'rxjs/operators';
 import { SavannaGameCard } from './savanna-game-card.model'
 import { SavannaGameService } from './savanna-game.service';
 
-enum WordsRandom {
-  quantity = 20,
-}
+// enum WordsRandom {
+//   quantity = 20,
+// }
 @Component({
   selector: 'app-savanna-game',
   templateUrl: './savanna-game.component.html',
@@ -47,16 +47,20 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   }
 
+  //TODO
   setActiveCard(): void {
-    const activeCardIndex = this.getRandomNumber(WordsRandom.quantity);
+    const activeCardIndex = this.getRandomNumber(this.remainGameCards.length);
 
     this.activeCard = this.remainGameCards[activeCardIndex];
-    console.log('INDEX:',activeCardIndex);
 
-    console.log('REMAINS GAME CARDS:', this.remainGameCards);
-    this.remainGameCards.splice(activeCardIndex, 1);
+    // console.log('INDEX:',activeCardIndex);
 
-    console.log('REMAINS GAME CARDS:', this.remainGameCards);
+    // console.log('REMAINS GAME CARDS:', this.remainGameCards);
+    this.remainGameCards.length === 0 ? this.gameOver() : this.remainGameCards.splice(activeCardIndex, 1);
+
+    // console.log('REMAINS GAME CARDS:', this.remainGameCards);
+// console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
+
 
   }
 
@@ -97,13 +101,16 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   }
 
   // removeElementFromArray(array, value) {
-  //   const arr = [...array];
-  //   const index = arr.indexOf(value);
+  //   // const arr = [...array];
+  //   const index : number= array.indexOf(value);
 
-  //   arr.splice(index, 1);
+  //   array.splice(index, 1);
 
-  //   return arr;
+  //   return array;
   // }
 
+  gameOver(): void {
+    console.log('GAme OVER!!!');
+  }
 
 }
