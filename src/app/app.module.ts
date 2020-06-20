@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { SavannaGameModule } from './modules/mini-games/savanna-game/savanna-game.module'
+import { SavannahGameModule } from './modules/mini-games/savannah-game/savannah-game.module'
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { SavannaGameModule } from './modules/mini-games/savanna-game/savanna-gam
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SavannaGameModule,
+    SavannahGameModule,
     HttpClientModule,
   ],
   providers: [],

@@ -2,8 +2,8 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Observable, pipe } from 'rxjs';
 import { catchError, filter, first, map, switchMap } from 'rxjs/operators';
 
-import { SavannaGameCard } from './savanna-game-card.model'
-import { SavannaGameService } from './savanna-game.service';
+import { SavannahGameCard } from './savannah-game-card.model'
+import { SavannahGameService } from './savannah-game.service';
 
 // enum WordsRandom {
 //   quantity = 20,
@@ -30,21 +30,21 @@ export enum CARD_NUMBER {
   FOURTH = 3,
 }
 @Component({
-  selector: 'app-savanna-game',
-  templateUrl: './savanna-game.component.html',
-  styleUrls: ['./savanna-game.component.scss']
+  selector: 'app-savannah-game',
+  templateUrl: './savannah-game.component.html',
+  styleUrls: ['./savannah-game.component.scss']
 })
-export class SavannaGameComponent implements OnInit, OnDestroy {
+export class SavannahGameComponent implements OnInit, OnDestroy {
 
-  constructor(private savannaGameService: SavannaGameService) { }
+  constructor(private savannahGameService: SavannahGameService) { }
 
-  savannaGameCards: SavannaGameCard[];
+  savannahGameCards: SavannahGameCard[];
 
-  remainGameCards: SavannaGameCard[];
+  remainGameCards: SavannahGameCard[];
 
-  activeCard: SavannaGameCard;
+  activeCard: SavannahGameCard;
 
-  randomCards: SavannaGameCard[];
+  randomCards: SavannahGameCard[];
 
   lives: number = 5;
 
@@ -56,11 +56,11 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   // nativeWordsArray: Array = [];
 
   ngOnInit(): void {
-    this.savannaGameService.getWords()
+    this.savannahGameService.getWords()
       .pipe(first())
       .subscribe(words => {
-        this.savannaGameCards = words;
-        this.remainGameCards = [...this.savannaGameCards];
+        this.savannahGameCards = words;
+        this.remainGameCards = [...this.savannahGameCards];
       })
 
   }
@@ -71,7 +71,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   getForeignWord(): void {
     this.setActiveCard();
-    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
+    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
     this.randomCards.push(this.activeCard);
 
   }
@@ -116,7 +116,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     return Math.floor(Math.random() * Math.floor(maxValue));
   }
 
-  getThreeRandomCardsRandomNumbers(cards: SavannaGameCard[]): SavannaGameCard[] {
+  getThreeRandomCardsRandomNumbers(cards: SavannahGameCard[]): SavannahGameCard[] {
     const ar = [...cards];
     const length = 3;
 
@@ -168,7 +168,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     this.setActiveCard();
     const randomActiveNativeWordPosition: number = this.getRandomNumber(this.randomCards.length);
     // +1????????????????????? Don`t touch fourth word
-    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
+    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
   }
 

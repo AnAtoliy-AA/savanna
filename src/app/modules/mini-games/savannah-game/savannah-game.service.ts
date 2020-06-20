@@ -3,8 +3,8 @@ import { catchError, filter, map, shareReplay, switchMap } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SavannaGameApi } from './savanna-game-api.model';
-import { SavannaGameCard } from './savanna-game-card.model';
+import { SavannahGameApi } from './savannah-game-api.model';
+import { SavannahGameCard } from './savannah-game-card.model';
 
 enum WordsPageNumber {
   pageNumber = 1,
@@ -12,18 +12,18 @@ enum WordsPageNumber {
 }
 
 @Injectable()
-export class SavannaGameService {
+export class SavannahGameService {
   constructor(public http: HttpClient) { }
 
   // response: any;
 
-  getWords(): Observable<SavannaGameCard[]> {
+  getWords(): Observable<SavannahGameCard[]> {
 
     return this.http.get(`https://afternoon-falls-25894.herokuapp.com/words?page=${WordsPageNumber.pageNumber}&group=${WordsPageNumber.wordsLevel}`)
       .pipe(
-        map((response: SavannaGameApi[]) => {
+        map((response: SavannahGameApi[]) => {
 
-          const wordsArray: SavannaGameCard[] = response.map(el => {
+          const wordsArray: SavannahGameCard[] = response.map(el => {
             return {
               wordId: el.id,
               foreignWord: el.word,

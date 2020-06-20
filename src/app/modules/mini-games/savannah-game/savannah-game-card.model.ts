@@ -1,4 +1,4 @@
-export interface SavannaGameCard {
+export interface SavannahGameCard {
   wordId: string;
   foreignWord: string;
   nativeWord: string;
