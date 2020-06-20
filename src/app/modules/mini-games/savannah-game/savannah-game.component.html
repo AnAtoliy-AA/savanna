@@ -10,7 +10,7 @@
     <div class="loader"></div>
     <p>Use keys 1, 2, 3, and 4 to give a quick answer</p>
   </div>
-  <button (click)="startGame()" class="start-button" [ngClass]="{hidden:isHiddenDescription}">Start game </button>
+  <button (click)="startGame()" class="start-button" [ngClass]="{hidden:isHiddenButton}">Start game </button>
 </div>
 
 <div *ngIf="savannahGameCards && activeCard">
@@ -27,6 +27,10 @@
       <div class="native-word-card"(click)="checkResult()"> {{ randomCards[2]?.nativeWord }}</div>
       <div class="native-word-card"(click)="checkResult()"> {{ randomCards[3]?.nativeWord }}</div> -->
   </div>
+</div>
 
-
+<div class="final-screen" [ngClass]="{hidden:isHiddenFinalScreen}">
+  <h2>GAME OVER!!!</h2>
+  <p>Mistakes: {{ mistakes }}</p>
+  <p>Right words: {{ rightWords }}</p>
 </div>

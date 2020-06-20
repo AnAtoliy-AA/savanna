@@ -46,15 +46,19 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
   randomCards: SavannahGameCard[];
 
-  lives: number = 5;
+  lives: number;
 
-  rightWords: number = 0;
+  rightWords: number;
 
-  mistakes: number = 0;
+  mistakes: number;
 
   isHiddenDescription: boolean = false;
 
   isHiddenLoader: boolean = true;
+
+  isHiddenButton: boolean = false;
+
+  isHiddenFinalScreen: boolean = true;
 
 
   // nativeWordsArray: Array = [];
@@ -73,9 +77,18 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
     console.log("Destroy");
   }
 
+getDefaultAdditionalGameValues(): void {
+  this.isHiddenDescription = true;
+  this.isHiddenButton = true;
+  this.isHiddenLoader = false;
+  this.lives = 5;
+  this.mistakes = 0;
+  this.rightWords = 0;
+  this.isHiddenFinalScreen = true;
+}
+
 startGame(): void {
-this.isHiddenDescription = true;
-this.isHiddenLoader = false;
+this.getDefaultAdditionalGameValues();
    this.savannahGameService.getWords()
       .pipe(first())
       .subscribe(words => {
@@ -158,30 +171,38 @@ this.isHiddenLoader = false;
 
   checkResult(wordId: string): void {
     wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
-    console.log('THIS_KEY_RANDOM_CARDS', this.randomCards);
+    // console.log('THIS_KEY_RANDOM_CARDS', this.randomCards);
 
   }
 
   notGuessTheWord(): void {
-    console.log('LEARN ENGLISH!!!');
-    console.log('bad sound');
+    // console.log('LEARN ENGLISH!!!');
+    // console.log('bad sound');
     this.lives--;
     this.lives === 0 ? this.gameOver() : this.getRandomCards();
     this.mistakes++;
+    // console.log('ANSWER:', this.activeCard.nativeWord);
     // this.setActiveCard();
     // this.getRandomCards();
-    console.log('REMAIN CARDS LNGT mist: ', this.remainGameCards.length);
+    // console.log('REMAIN CARDS LNGT mist: ', this.remainGameCards.length);
   }
 
   guessTheWord(): void {
-    console.log('You are lucky!!');
-    console.log('good sound');
+    // console.log('You are lucky!!');
+    // console.log('good sound');
     this.rightWords++;
-    console.log('REMAIN CARDS LNGT befor: ', this.remainGameCards.length);
-    this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, this.activeCard);
+    // console.log('REMAIN CARDS LNGT befor: ', this.remainGameCards.length);
+    this.remainGameCards.length === 0 ? this.gameOver() : this.getNextRandomCards();
     // this.setActiveCard();
+
+    // console.log('REMAIN CARDS LNGT after: ', this.remainGameCards.length);
+    //
+  }
+
+  getNextRandomCards(): void {
+    this.removeElementFromArray(this.remainGameCards, this.activeCard);
     this.getRandomCards();
-    console.log('REMAIN CARDS LNGT after: ', this.remainGameCards.length);
+    // console.log('ANSWER:', this.activeCard.nativeWord);
   }
 
   getRandomCards(): void {
@@ -202,30 +223,33 @@ this.isHiddenLoader = false;
   // }
 
   gameOver(): void {
-    console.log('GAme OVER!!!');
-    console.log('YOU HAVE Mistakes: ', this.mistakes);
-    console.log('YOU HAVE Right Words: ', this.rightWords);
+    this.isHiddenFinalScreen = false;
+    this.isHiddenButton = false;
+    this.activeCard = null;
+    // console.log('GAme OVER!!!');
+    // console.log('YOU HAVE Mistakes: ', this.mistakes);
+    // console.log('YOU HAVE Right Words: ', this.rightWords);
   }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log(event);
+    // console.log(event);
 
     if (event.key === KEY_CODE.NUMBER_ONE.toString()) {
-      console.log('1',this.randomCards[0].wordId);
+      // console.log('1',this.randomCards[0].wordId);
       this.checkResult(this.randomCards[CARD_NUMBER.FIRST].wordId);
     }
 
     if (event.key === KEY_CODE.NUMBER_TWO.toString()) {
-      console.log('2',this.randomCards[1].wordId);
+      // console.log('2',this.randomCards[1].wordId);
       this.checkResult(this.randomCards[CARD_NUMBER.SECOND].wordId);
     }
     if (event.key === KEY_CODE.NUMBER_THREE.toString()) {
-      console.log('3',this.randomCards[2].wordId);
+      // console.log('3',this.randomCards[2].wordId);
       this.checkResult(this.randomCards[CARD_NUMBER.THIRD].wordId);
     }
     if (event.key === KEY_CODE.NUMBER_FOUR.toString()) {
-      console.log('4',this.randomCards[3].wordId);
+      // console.log('4',this.randomCards[3].wordId);
       this.checkResult(this.randomCards[CARD_NUMBER.FOURTH].wordId);
     }
   }
