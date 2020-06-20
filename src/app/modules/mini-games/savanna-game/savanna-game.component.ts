@@ -26,6 +26,10 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   randomCards: SavannaGameCard[];
 
   lives: number = 5;
+
+  mistakes: number = 0;
+
+
   // nativeWordsArray: Array = [];
 
   ngOnInit(): void {
@@ -51,7 +55,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   //TODO
   setActiveCard(): void {
-    const activeCardIndex = this.getRandomNumber(this.remainGameCards.length);
+    const activeCardIndex :number = this.getRandomNumber(this.remainGameCards.length);
 
     this.activeCard = this.remainGameCards[activeCardIndex];
 
@@ -59,15 +63,25 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
     // console.log('REMAINS GAME CARDS:', this.remainGameCards);
     // this.remainGameCards.length === 0 ? this.gameOver() : this.remainGameCards.splice(activeCardIndex, 1);
-    this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, activeCardIndex);
+
+
+    // this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, activeCardIndex);
 
     // console.log('REMAINS GAME CARDS:', this.remainGameCards);
 // console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
   }
 
-   removeElementFromArray(array, index: number) {
+  //  removeElementFromArray(array, index: number) {
+  //   // const arr = [...array];
+  //   // const index : number= array.indexOf(value);
+
+  //   array.splice(index, 1);
+
+  //   return array;
+  // }
+  removeElementFromArray(array, value) {
     // const arr = [...array];
-    // const index : number= array.indexOf(value);
+     const index : number= array.indexOf(value);
 
     array.splice(index, 1);
 
@@ -90,23 +104,31 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   checkResult(wordId: string): void {
        wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
-    this.setActiveCard();
-    this.getRandomCards();
+
   }
 
   notGuessTheWord(): void {
     console.log('LEARN ENGLISH!!!');
+    console.log('bad sound');
     this.lives--;
     this.lives === 0 ? this.gameOver() : console.log('ss');
-
+    this.mistakes++;
+    this.setActiveCard();
+    this.getRandomCards();
+    console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
   }
 
   guessTheWord(): void {
     console.log('You are lucky!!');
+    console.log('good sound');
+    this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, this.activeCard);
+    this.setActiveCard();
+    this.getRandomCards();
+    console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
   }
 
   getRandomCards(): void {
-   const randomActiveNativeWordPosition : number = this.getRandomNumber(this.randomCards.length + 1);
+   const randomActiveNativeWordPosition : number = this.getRandomNumber(this.randomCards.length);
 // +1????????????????????? Don`t touch fourth word
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannaGameCards);
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
@@ -123,6 +145,7 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   gameOver(): void {
     console.log('GAme OVER!!!');
+    console.log('YOU HAVE Mistakes: ', this.mistakes);
   }
 
 }
