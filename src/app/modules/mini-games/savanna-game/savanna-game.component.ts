@@ -24,6 +24,8 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
   activeCard: SavannaGameCard;
 
   randomCards: SavannaGameCard[];
+
+  lives: number = 5;
   // nativeWordsArray: Array = [];
 
   ngOnInit(): void {
@@ -56,14 +58,21 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
     // console.log('INDEX:',activeCardIndex);
 
     // console.log('REMAINS GAME CARDS:', this.remainGameCards);
-    this.remainGameCards.length === 0 ? this.gameOver() : this.remainGameCards.splice(activeCardIndex, 1);
+    // this.remainGameCards.length === 0 ? this.gameOver() : this.remainGameCards.splice(activeCardIndex, 1);
+    this.remainGameCards.length === 0 ? this.gameOver() : this.removeElementFromArray(this.remainGameCards, activeCardIndex);
 
     // console.log('REMAINS GAME CARDS:', this.remainGameCards);
 // console.log('REMAIN CARDS LNGT: ', this.remainGameCards.length);
-
-
   }
 
+   removeElementFromArray(array, index: number) {
+    // const arr = [...array];
+    // const index : number= array.indexOf(value);
+
+    array.splice(index, 1);
+
+    return array;
+  }
 
 
   getRandomNumber(maxValue: number): number {
@@ -87,6 +96,9 @@ export class SavannaGameComponent implements OnInit, OnDestroy {
 
   notGuessTheWord(): void {
     console.log('LEARN ENGLISH!!!');
+    this.lives--;
+    this.lives === 0 ? this.gameOver() : console.log('ss');
+
   }
 
   guessTheWord(): void {
