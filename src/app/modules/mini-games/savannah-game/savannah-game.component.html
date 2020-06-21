@@ -8,7 +8,12 @@
       <p>The Savannah training helps you build your vocabulary.</p>
     </div>
     <div class="loader-container" [ngClass]="{hidden:isHiddenLoader}">
-      <div class="loader"></div>
+      <!-- <div class="loader"></div> -->
+      <div class="cssload-loader">
+        <div class="cssload-inner cssload-one"></div>
+        <div class="cssload-inner cssload-two"></div>
+        <div class="cssload-inner cssload-three"></div>
+      </div>
       <p>Use keys 1, 2, 3, and 4 to give a quick answer</p>
     </div>
     <button (click)="startGame()" class="start-button" [ngClass]="{hidden:isHiddenButton}">Start game </button>
@@ -35,5 +40,7 @@
     <p>Mistakes: {{ mistakes }}</p>
     <p>Right words: {{ rightWords }}</p>
   </div>
+
+
 </div>
 

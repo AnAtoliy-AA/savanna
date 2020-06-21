@@ -32,7 +32,7 @@ export enum CARD_NUMBER {
 @Component({
   selector: 'app-savannah-game',
   templateUrl: './savannah-game.component.html',
-  styleUrls: ['./savannah-game.component.scss']
+  styleUrls: ['./savannah-game.component.scss','./savannah-game-loader.scss']
 })
 export class SavannahGameComponent implements OnInit, OnDestroy {
 
