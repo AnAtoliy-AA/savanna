@@ -2,9 +2,20 @@
 <!-- <p>{ foreignWord }</p> -->
 <div class="savannah-game-wrapper">
   <div class="start-screen">
+    <!-- <img src="../../../../assets/savannah-game-start-page.jpg" alt=""> -->
     <div class="close"></div>
     <div class="start-description" [ngClass]="{hidden:isHiddenDescription}">
       <h1>SAVANNAH</h1>
+      <div id="load">
+        <div>H</div>
+        <div>A</div>
+        <div>N</div>
+        <div>N</div>
+        <div>A</div>
+        <div>V</div>
+        <div>A</div>
+        <div>S</div>
+      </div>
       <p>The Savannah training helps you build your vocabulary.</p>
     </div>
     <div class="loader-container" [ngClass]="{hidden:isHiddenLoader}">
@@ -13,6 +24,9 @@
         <div class="cssload-inner cssload-one"></div>
         <div class="cssload-inner cssload-two"></div>
         <div class="cssload-inner cssload-three"></div>
+      </div>
+      <div id="preloader">
+        <div id="loader"></div>
       </div>
       <p>Use keys 1, 2, 3, and 4 to give a quick answer</p>
     </div>
@@ -43,4 +57,3 @@
 
 
 </div>
-

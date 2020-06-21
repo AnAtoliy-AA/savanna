@@ -1,8 +1,15 @@
 .savannah-game-wrapper {
   text-align: center;
+  // background-image: url('../../../../assets/savannah-game-start-page.jpg');
   .start-screen {
-
-
+   background-image: url('../../../../assets/savannah-game-start-page.jpg');
+   background-repeat: no-repeat;
+   background-size: 100%;
+  //  opacity: 0.5;
+    img {
+      height: 100vh;
+      position: absolute;
+    }
 
     h1 {
       font-size: 2em;
