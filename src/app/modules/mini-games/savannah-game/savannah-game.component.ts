@@ -32,7 +32,7 @@ export enum CARD_NUMBER {
 @Component({
   selector: 'app-savannah-game',
   templateUrl: './savannah-game.component.html',
-  styleUrls: ['./savannah-game.component.scss','./savannah-game-loader.scss', './savannah-game-title.scss']
+  styleUrls: ['./savannah-game.component.scss', './savannah-game-loader.scss', './savannah-game-title.scss']
 })
 export class SavannahGameComponent implements OnInit, OnDestroy {
 
@@ -45,6 +45,8 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   activeCard: SavannahGameCard;
 
   randomCards: SavannahGameCard[];
+
+  livesArray: Array<number> = [1, 1, 1, 1, 1];
 
   lives: number;
 
@@ -81,28 +83,30 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
     console.log("Destroy");
   }
 
-getDefaultAdditionalGameValues(): void {
-  this.isHiddenDescription = true;
-  this.isHiddenButton = true;
-  this.isHiddenLoader = false;
-  this.lives = 5;
-  this.mistakes = 0;
-  this.rightWords = 0;
-  this.isHiddenFinalScreen = true;
-}
+  getDefaultAdditionalGameValues(): void {
+    this.isHiddenDescription = true;
+    this.isHiddenButton = true;
+    this.isHiddenLoader = false;
+    this.lives = 5;
+    this.mistakes = 0;
+    this.rightWords = 0;
+    this.isHiddenFinalScreen = true;
 
-startGame(): void {
-this.getDefaultAdditionalGameValues();
-   this.savannahGameService.getWords()
+    // this.livesArray.fill(1,0,4);
+  }
+
+  startGame(): void {
+    this.getDefaultAdditionalGameValues();
+    this.savannahGameService.getWords()
       .pipe(first())
       .subscribe(words => {
         this.savannahGameCards = words;
         this.remainGameCards = [...this.savannahGameCards];
         this.getForeignWord();
       })
-// this.getForeignWord();
-// setTimeout(this.getForeignWord, 3000);
-}
+    // this.getForeignWord();
+    // setTimeout(this.getForeignWord, 3000);
+  }
 
 
   getForeignWord(): void {
@@ -186,6 +190,7 @@ this.getDefaultAdditionalGameValues();
     // console.log('LEARN ENGLISH!!!');
     // console.log('bad sound');
     this.lives--;
+    this.livesArray.splice(0, 1);
     this.lives === 0 ? this.gameOver() : this.getRandomCards();
     this.mistakes++;
     // console.log('ANSWER:', this.activeCard.nativeWord);

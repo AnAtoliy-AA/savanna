@@ -3,7 +3,7 @@
 <div class="savannah-game-wrapper">
   <!-- <div class="close-button" (click)="closeGame()"></div> -->
   <div class="start-screen">
-    <!-- <img src="../../../../assets/savannah-game-start-page.jpg" alt=""> -->
+    <img src="../../../../assets/savannah-game-start-page.jpg" alt="">
 
     <div class="start-description" [ngClass]="{hidden:isHiddenDescription}">
       <div class="close-button" (click)="closeGame()"></div>
@@ -38,6 +38,7 @@
   <div class="game-container" *ngIf="savannahGameCards && activeCard">
     <div class="close-button" (click)="closeGame()"></div>
     <div class="lives">lives: {{ lives }}</div>
+    <div class="lives" *ngFor="let live of livesArray"><img src="../../../../assets/savannah-game-lives.png" alt=""></div>
     <div class="active-card-container">
       <div class="active-card" [ngClass]="{activeCardFall:isAnimationStart}">
         {{ activeCard.foreignWord }} </div>

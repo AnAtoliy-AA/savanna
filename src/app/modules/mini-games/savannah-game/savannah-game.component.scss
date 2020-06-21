@@ -3,15 +3,21 @@
 
   // background-image: url('../../../../assets/savannah-game-start-page.jpg');
   .start-screen {
-    background-image: url('../../../../assets/savannah-game-start-page.jpg');
+    // background-image: url('../../../../assets/savannah-game-start-page.jpg');
+    // overflow: hidden;
     background-repeat: no-repeat;
     background-size: 100%;
     color: #fff;
 
     //  opacity: 0.5;
     img {
-      height: 100vh;
+      height: 100%;
+      width: 100%;
       position: absolute;
+      left: 0;
+      top: 0;
+      // opacity: 0.5;
+      z-index: -10;
     }
 
     h1 {
@@ -46,8 +52,9 @@
     // }
 
     .start-button {
-      position: absolute;
-      margin-top: 40VH;
+      // position: absolute;
+      margin-top: 40vh;
+      margin-bottom: 30vh;
     }
   }
 
@@ -87,9 +94,17 @@
   }
 
   .game-container {
-    position: relative;
+    // position: relative;
 
     height: 100vH;
+
+    background-color:green;
+
+    .lives {
+      display: flex;
+      height: 20px;
+      width: 20px;
+    }
 
     .active-card-container {
       position: relative;
