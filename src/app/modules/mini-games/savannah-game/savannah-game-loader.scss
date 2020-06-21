@@ -1,6 +1,6 @@
 
 
-.cssload-loader {
+.spinner-loader {
 	position: absolute;
 	left: calc(50% - 31px);
 	width: 100px;
@@ -9,7 +9,7 @@
 	perspective: 780px;
 }
 
-.cssload-inner {
+.spinner-inner {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -23,39 +23,39 @@
 		-ms-border-radius: 50%;
 		-webkit-border-radius: 50%;
 		-moz-border-radius: 50%;
-  &.cssload-one {
+  &.spinner-one {
 	left: 0%;
 	top: 0%;
-	animation: cssload-rotate-one 1.15s linear infinite;
-		-o-animation: cssload-rotate-one 1.15s linear infinite;
-		-ms-animation: cssload-rotate-one 1.15s linear infinite;
-		-webkit-animation: cssload-rotate-one 1.15s linear infinite;
-		-moz-animation: cssload-rotate-one 1.15s linear infinite;
+	animation: spinner-rotate-one 1.15s linear infinite;
+		-o-animation: spinner-rotate-one 1.15s linear infinite;
+		-ms-animation: spinner-rotate-one 1.15s linear infinite;
+		-webkit-animation: spinner-rotate-one 1.15s linear infinite;
+		-moz-animation: spinner-rotate-one 1.15s linear infinite;
 	border-bottom: 3px solid #5C5EDC;
 }
-  &.cssload-two {
+  &.spinner-two {
 	right: 0%;
 	top: 0%;
-	animation: cssload-rotate-two 1.15s linear infinite;
-		-o-animation: cssload-rotate-two 1.15s linear infinite;
-		-ms-animation: cssload-rotate-two 1.15s linear infinite;
-		-webkit-animation: cssload-rotate-two 1.15s linear infinite;
-		-moz-animation: cssload-rotate-two 1.15s linear infinite;
+	animation: spinner-rotate-two 1.15s linear infinite;
+		-o-animation: spinner-rotate-two 1.15s linear infinite;
+		-ms-animation: spinner-rotate-two 1.15s linear infinite;
+		-webkit-animation: spinner-rotate-two 1.15s linear infinite;
+		-moz-animation: spinner-rotate-two 1.15s linear infinite;
 	border-right: 3px solid rgba(76, 70, 101, 0.99);
 }
-&.cssload-three {
+&.spinner-three {
 	right: 0%;
 	bottom: 0%;
-	animation: cssload-rotate-three 1.15s linear infinite;
-		-o-animation: cssload-rotate-three 1.15s linear infinite;
-		-ms-animation: cssload-rotate-three 1.15s linear infinite;
-		-webkit-animation: cssload-rotate-three 1.15s linear infinite;
-		-moz-animation: cssload-rotate-three 1.15s linear infinite;
+	animation: spinner-rotate-three 1.15s linear infinite;
+		-o-animation: spinner-rotate-three 1.15s linear infinite;
+		-ms-animation: spinner-rotate-three 1.15s linear infinite;
+		-webkit-animation: spinner-rotate-three 1.15s linear infinite;
+		-moz-animation: spinner-rotate-three 1.15s linear infinite;
 	border-top: 3px solid rgb(233, 144, 138);;
 }
 
 }
-@keyframes cssload-rotate-one {
+@keyframes spinner-rotate-one {
 	0% {
 		transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
 	}
@@ -64,7 +64,7 @@
 	}
 }
 
-@-o-keyframes cssload-rotate-one {
+@-o-keyframes spinner-rotate-one {
 	0% {
 		-o-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
 	}
@@ -73,7 +73,7 @@
 	}
 }
 
-@-ms-keyframes cssload-rotate-one {
+@-ms-keyframes spinner-rotate-one {
 	0% {
 		-ms-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
 	}
@@ -82,7 +82,7 @@
 	}
 }
 
-@-webkit-keyframes cssload-rotate-one {
+@-webkit-keyframes spinner-rotate-one {
 	0% {
 		-webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
 	}
@@ -91,7 +91,7 @@
 	}
 }
 
-@-moz-keyframes cssload-rotate-one {
+@-moz-keyframes spinner-rotate-one {
 	0% {
 		-moz-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
 	}
@@ -100,7 +100,7 @@
 	}
 }
 
-@keyframes cssload-rotate-two {
+@keyframes spinner-rotate-two {
 	0% {
 		transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
 	}
@@ -109,7 +109,7 @@
 	}
 }
 
-@-o-keyframes cssload-rotate-two {
+@-o-keyframes spinner-rotate-two {
 	0% {
 		-o-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
 	}
@@ -118,7 +118,7 @@
 	}
 }
 
-@-ms-keyframes cssload-rotate-two {
+@-ms-keyframes spinner-rotate-two {
 	0% {
 		-ms-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
 	}
@@ -127,7 +127,7 @@
 	}
 }
 
-@-webkit-keyframes cssload-rotate-two {
+@-webkit-keyframes spinner-rotate-two {
 	0% {
 		-webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
 	}
@@ -136,7 +136,7 @@
 	}
 }
 
-@-moz-keyframes cssload-rotate-two {
+@-moz-keyframes spinner-rotate-two {
 	0% {
 		-moz-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
 	}
@@ -145,7 +145,7 @@
 	}
 }
 
-@keyframes cssload-rotate-three {
+@keyframes spinner-rotate-three {
 	0% {
 		transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
 	}
@@ -154,7 +154,7 @@
 	}
 }
 
-@-o-keyframes cssload-rotate-three {
+@-o-keyframes spinner-rotate-three {
 	0% {
 		-o-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
 	}
@@ -163,7 +163,7 @@
 	}
 }
 
-@-ms-keyframes cssload-rotate-three {
+@-ms-keyframes spinner-rotate-three {
 	0% {
 		-ms-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
 	}
@@ -172,7 +172,7 @@
 	}
 }
 
-@-webkit-keyframes cssload-rotate-three {
+@-webkit-keyframes spinner-rotate-three {
 	0% {
 		-webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
 	}
@@ -181,7 +181,7 @@
 	}
 }
 
-@-moz-keyframes cssload-rotate-three {
+@-moz-keyframes spinner-rotate-three {
 	0% {
 		-moz-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
 	}
