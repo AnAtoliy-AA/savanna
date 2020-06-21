@@ -38,7 +38,10 @@
   <div class="game-container" *ngIf="savannahGameCards && activeCard">
     <div class="close-button" (click)="closeGame()"></div>
     <div class="lives">lives: {{ lives }}</div>
-    <div class="lives" *ngFor="let live of livesArray"><img src="../../../../assets/savannah-game-lives.png" alt=""></div>
+    <div class="lives-container">
+      <img class="lives" *ngFor="let live of livesArray" src="../../../../assets/savannah-game-lives.png" alt="">
+    </div>
+
     <div class="active-card-container">
       <div class="active-card" [ngClass]="{activeCardFall:isAnimationStart}">
         {{ activeCard.foreignWord }} </div>
