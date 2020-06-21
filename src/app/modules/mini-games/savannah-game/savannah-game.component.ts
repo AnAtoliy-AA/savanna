@@ -121,6 +121,7 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   getForeignWord(): void {
     this.isHiddenLoader = true;
     this.setActiveCard();
+    // this.soundForeignWord();
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
     this.randomCards.push(this.activeCard);
 
@@ -217,11 +218,58 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
     this.isAnimationBullet = true;
     this.rightWords++;
     // console.log('REMAIN CARDS LNGT befor: ', this.remainGameCards.length);
-    this.remainGameCards.length === 0 ? this.gameOver() : this.getNextRandomCards();
+    // this.remainGameCards.length === 0 ? this.gameOver() : this.getNextRandomCards();
+    this.rightWords === 20 ? this.gameOver() : this.getNextRandomCards();
     // this.setActiveCard();
 
     // console.log('REMAIN CARDS LNGT after: ', this.remainGameCards.length);
     //
+  }
+
+  soundForeignWord() {
+
+    const msg = new SpeechSynthesisUtterance();
+
+    const weatherText = this.activeCard.foreignWord;
+
+    msg.text = weatherText;
+    // msg.lang = language;
+
+    speechSynthesis.speak(msg);
+  }
+
+
+  // getVoiceLocation(): void {
+  //   window.SpeechRecognition = window.SpeechRecognition || window['webkitSpeechRecognition'];
+
+  //   const recognition = new SpeechRecognition();
+
+  //   recognition.interimResults = true;
+
+  //   recognition.addEventListener('result', e => {
+
+  //     const transcript = Array.from(e.results)
+  //       .map(result => result[0])
+  //       .map(result => result.transcript)
+  //       .join('')
+
+  //     if (transcript.includes('weather')) {
+  //       this.soundWeather();
+  //     } else {
+  //       this.appStateService.setSearchValue(transcript);
+  //     }
+  //   });
+
+  //   recognition.start();
+  // }
+
+  // activeLanguageConfig: any = {
+  //   english: 'en',
+  //   russian: 'ru',
+  //   belorussian: 'be'
+  // }
+  soundWeather(): void {
+
   }
 
   getNextRandomCards(): void {
@@ -233,6 +281,7 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   getRandomCards(): void {
     // this.isAnimationStart = true;
     this.setActiveCard();
+    this.soundForeignWord();
     const randomActiveNativeWordPosition: number = this.getRandomNumber(this.randomCards.length);
     // +1????????????????????? Don`t touch fourth word
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
