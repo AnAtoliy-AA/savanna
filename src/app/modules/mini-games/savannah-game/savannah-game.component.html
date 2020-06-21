@@ -3,10 +3,10 @@
 <div class="savannah-game-wrapper">
   <div class="start-screen">
     <!-- <img src="../../../../assets/savannah-game-start-page.jpg" alt=""> -->
-    <div class="close"></div>
+    <div class="close-button" (click)="closeGame()"></div>
     <div class="start-description" [ngClass]="{hidden:isHiddenDescription}">
       <h1>SAVANNAH</h1>
-      <div id="load">
+      <div id="game-name">
         <div>H</div>
         <div>A</div>
         <div>N</div>
@@ -33,11 +33,12 @@
     <button (click)="startGame()" class="start-button" [ngClass]="{hidden:isHiddenButton}">Start game </button>
   </div>
 
-  <div *ngIf="savannahGameCards && activeCard">
-    <div class="close"></div>
+  <div class="game-container" *ngIf="savannahGameCards && activeCard">
+    <div class="close-button" (click)="closeGame()"></div>
     <div class="lives">lives: {{ lives }}</div>
     <div class="active-card-container">
-      <div class="active-card active-card-fall">{{ activeCard.foreignWord }} </div>
+      <div class="active-card" [ngClass]="{activeCardFall:isAnimationStart}">
+        {{ activeCard.foreignWord }} </div>
     </div>
 
     <div class="native-words-container">
@@ -47,6 +48,9 @@
         <div class="native-word-card"(click)="checkResult()"> {{ randomCards[2]?.nativeWord }}</div>
         <div class="native-word-card"(click)="checkResult()"> {{ randomCards[3]?.nativeWord }}</div> -->
     </div>
+
+    <div class="bullet"></div>
+    <div class="hunter"></div>
   </div>
 
   <div class="final-screen" [ngClass]="{hidden:isHiddenFinalScreen}">

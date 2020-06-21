@@ -60,6 +60,8 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
   isHiddenFinalScreen: boolean = true;
 
+  isAnimationStart: boolean = true;
+
 
   // nativeWordsArray: Array = [];
 
@@ -170,7 +172,10 @@ this.getDefaultAdditionalGameValues();
   }
 
   checkResult(wordId: string): void {
+    this.isAnimationStart = false;
     wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
+
+    // this.isAnimationStart = true;
     // console.log('THIS_KEY_RANDOM_CARDS', this.randomCards);
 
   }
@@ -206,11 +211,13 @@ this.getDefaultAdditionalGameValues();
   }
 
   getRandomCards(): void {
+    // this.isAnimationStart = true;
     this.setActiveCard();
     const randomActiveNativeWordPosition: number = this.getRandomNumber(this.randomCards.length);
     // +1????????????????????? Don`t touch fourth word
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
+    this.isAnimationStart = true;
   }
 
   // removeElementFromArray(array, value) {
@@ -229,6 +236,10 @@ this.getDefaultAdditionalGameValues();
     // console.log('GAme OVER!!!');
     // console.log('YOU HAVE Mistakes: ', this.mistakes);
     // console.log('YOU HAVE Right Words: ', this.rightWords);
+  }
+
+  closeGame() {
+    console.log('CLOSE_GAME');
   }
 
   @HostListener('window:keyup', ['$event'])
