@@ -62,6 +62,8 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
   isAnimationStart: boolean = true;
 
+  isAnimationBullet: boolean = false;
+
 
   // nativeWordsArray: Array = [];
 
@@ -195,6 +197,7 @@ this.getDefaultAdditionalGameValues();
   guessTheWord(): void {
     // console.log('You are lucky!!');
     // console.log('good sound');
+    this.isAnimationBullet = true;
     this.rightWords++;
     // console.log('REMAIN CARDS LNGT befor: ', this.remainGameCards.length);
     this.remainGameCards.length === 0 ? this.gameOver() : this.getNextRandomCards();
