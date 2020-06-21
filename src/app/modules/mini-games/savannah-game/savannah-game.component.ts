@@ -103,7 +103,7 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
     // this.livesArray.fill(1,0,4);
   }
-
+  // TODO life_count  speed_falling  quantity_words
   startGame(): void {
     this.getDefaultAdditionalGameValues();
     this.savannahGameService.getWords()
@@ -132,6 +132,7 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
     const activeCardIndex: number = this.getRandomNumber(this.remainGameCards.length);
 
     this.activeCard = this.remainGameCards[activeCardIndex];
+    // this.isAnimationBullet = false;
 
     // console.log('INDEX:',activeCardIndex);
 
@@ -189,6 +190,7 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
   checkResult(wordId: string): void {
     this.isAnimationStart = false;
+    this.isAnimationBullet = false;
     wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
 
     // this.isAnimationStart = true;
@@ -230,9 +232,9 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
 
     const msg = new SpeechSynthesisUtterance();
 
-    const weatherText = this.activeCard.foreignWord;
+    const foreignWordText = this.activeCard.foreignWord;
 
-    msg.text = weatherText;
+    msg.text = foreignWordText;
     // msg.lang = language;
 
     speechSynthesis.speak(msg);
@@ -325,24 +327,26 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     // console.log(event);
+    if (this.activeCard) {
+      if (event.key === KEY_CODE.NUMBER_ONE.toString()) {
+        // console.log('1',this.randomCards[0].wordId);
+        this.checkResult(this.randomCards[CARD_NUMBER.FIRST].wordId);
+      }
 
-    if (event.key === KEY_CODE.NUMBER_ONE.toString()) {
-      // console.log('1',this.randomCards[0].wordId);
-      this.checkResult(this.randomCards[CARD_NUMBER.FIRST].wordId);
+      if (event.key === KEY_CODE.NUMBER_TWO.toString()) {
+        // console.log('2',this.randomCards[1].wordId);
+        this.checkResult(this.randomCards[CARD_NUMBER.SECOND].wordId);
+      }
+      if (event.key === KEY_CODE.NUMBER_THREE.toString()) {
+        // console.log('3',this.randomCards[2].wordId);
+        this.checkResult(this.randomCards[CARD_NUMBER.THIRD].wordId);
+      }
+      if (event.key === KEY_CODE.NUMBER_FOUR.toString()) {
+        // console.log('4',this.randomCards[3].wordId);
+        this.checkResult(this.randomCards[CARD_NUMBER.FOURTH].wordId);
+      }
     }
 
-    if (event.key === KEY_CODE.NUMBER_TWO.toString()) {
-      // console.log('2',this.randomCards[1].wordId);
-      this.checkResult(this.randomCards[CARD_NUMBER.SECOND].wordId);
-    }
-    if (event.key === KEY_CODE.NUMBER_THREE.toString()) {
-      // console.log('3',this.randomCards[2].wordId);
-      this.checkResult(this.randomCards[CARD_NUMBER.THIRD].wordId);
-    }
-    if (event.key === KEY_CODE.NUMBER_FOUR.toString()) {
-      // console.log('4',this.randomCards[3].wordId);
-      this.checkResult(this.randomCards[CARD_NUMBER.FOURTH].wordId);
-    }
   }
 
 }

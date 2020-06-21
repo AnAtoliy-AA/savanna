@@ -7,7 +7,7 @@ import { SavannahGameApi } from './savannah-game-api.model';
 import { SavannahGameCard } from './savannah-game-card.model';
 
 enum WordsPageNumber {
-  pageNumber = 3,
+  pageNumber = 2,
   wordsLevel = 1
 }
 

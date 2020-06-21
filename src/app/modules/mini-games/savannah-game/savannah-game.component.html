@@ -37,6 +37,8 @@
 
   <div class="game-container" *ngIf="savannahGameCards && activeCard">
     <div class="close-button" (click)="closeGame()"></div>
+    <div class="sound-toggler-button">SOUND
+    </div>
     <div class="lives">lives: {{ lives }}</div>
     <div class="lives-container">
       <img class="lives" *ngFor="let live of livesArray" src="../../../../assets/savannah-game-lives.png" alt="">
