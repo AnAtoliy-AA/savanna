@@ -29,6 +29,13 @@ export enum CARD_NUMBER {
   THIRD = 2,
   FOURTH = 3,
 }
+
+const AUDIO_NAMES = {
+  ERROR: 'error',
+  FAILURE: 'failure',
+  SUCCESS: 'succes',
+  CORRECT: 'correct',
+}
 @Component({
   selector: 'app-savannah-game',
   templateUrl: './savannah-game.component.html',
@@ -91,6 +98,8 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
     this.mistakes = 0;
     this.rightWords = 0;
     this.isHiddenFinalScreen = true;
+
+    this.livesArray = [1, 1, 1, 1, 1];
 
     // this.livesArray.fill(1,0,4);
   }
@@ -189,9 +198,11 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   notGuessTheWord(): void {
     // console.log('LEARN ENGLISH!!!');
     // console.log('bad sound');
+    this.audioPlay(AUDIO_NAMES.ERROR);
     this.lives--;
     this.livesArray.splice(0, 1);
-    this.lives === 0 ? this.gameOver() : this.getRandomCards();
+    // this.lives === 0 ? this.gameOver() : this.getRandomCards();
+    this.livesArray.length === 0 ? this.gameOver() : this.getRandomCards();
     this.mistakes++;
     // console.log('ANSWER:', this.activeCard.nativeWord);
     // this.setActiveCard();
@@ -202,6 +213,7 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   guessTheWord(): void {
     // console.log('You are lucky!!');
     // console.log('good sound');
+    this.audioPlay(AUDIO_NAMES.CORRECT);
     this.isAnimationBullet = true;
     this.rightWords++;
     // console.log('REMAIN CARDS LNGT befor: ', this.remainGameCards.length);
@@ -237,10 +249,21 @@ export class SavannahGameComponent implements OnInit, OnDestroy {
   //   return array;
   // }
 
+  audioPlay(name: string) {
+    if (name) {
+      // const audio = new Audio(`./assets/audio/${name}.mp3`);
+
+      const audio = new Audio(`../../../../assets/savannah-game-${name}.mp3`);
+
+      audio.play();
+    }
+  }
+
   gameOver(): void {
     this.isHiddenFinalScreen = false;
     this.isHiddenButton = false;
     this.activeCard = null;
+    this.livesArray.length > 0 ? this.audioPlay(AUDIO_NAMES.SUCCESS) : this.audioPlay(AUDIO_NAMES.FAILURE);
     // console.log('GAme OVER!!!');
     // console.log('YOU HAVE Mistakes: ', this.mistakes);
     // console.log('YOU HAVE Right Words: ', this.rightWords);
