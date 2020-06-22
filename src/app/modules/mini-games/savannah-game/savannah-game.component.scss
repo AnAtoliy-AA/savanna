@@ -161,10 +161,6 @@
 
     }
 
-    .animationStop {
-      animation-name: none;
-      // animation-play-state: paused;;
-    }
 
     .native-words-container {
       display: flex;
@@ -199,6 +195,10 @@
 
   }
 
+  .animationStop {
+    animation-name: none;
+    // animation-play-state: paused;;
+  }
 
   // .final-screen {
   //   text-align: center;

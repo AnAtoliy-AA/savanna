@@ -37,7 +37,7 @@ export class SavannahGameService {
           console.log('WORDS ARRAY', wordsArray);
           return wordsArray;
         }),
-        shareReplay()
+        shareReplay(),
       )
 
   }
