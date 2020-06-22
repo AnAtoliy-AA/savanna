@@ -41,7 +41,7 @@
     </div>
 
     <div class="active-card-container">
-      <div class="active-card" [ngClass]="{activeCardFall:isAnimationStart}">
+      <div class="active-card" [ngClass]="{activeCardFall:isAnimationEnd}">
         {{ activeCard.foreignWord }} </div>
     </div>
 
@@ -50,7 +50,7 @@
         {{ card.nativeWord }}</div>
     </div>
 
-    <div class="" [ngClass]="{bullet:isAnimationBullet,animationStop:isAnimationStart}"></div>
+    <div class="" [ngClass]="{bullet:isAnimationBullet, animationStop:!isAnimationBullet}"></div>
     <div class="hunter"></div>
   </div>
 

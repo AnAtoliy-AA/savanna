@@ -46,10 +46,10 @@ export class SavannahGameComponent implements OnInit {
   isHiddenButton: boolean = false;
   isHiddenFinalScreen: boolean = true;
   isAnimationStart: boolean = true;
+  isAnimationEnd: boolean = false;
   isAnimationBullet: boolean = false;
 
   ngOnInit(): void {
-
   }
 
   getDefaultAdditionalGameValues(): void {
@@ -85,7 +85,8 @@ export class SavannahGameComponent implements OnInit {
     const activeCardIndex: number = this.getRandomNumber(this.remainGameCards.length);
 
     this.activeCard = this.remainGameCards[activeCardIndex];
-    this.isAnimationStart = true;
+    this.isAnimationEnd = true;
+    //  this.isAnimationBullet = false;
   }
 
   removeElementFromArray(array: SavannahGameCard[], value: SavannahGameCard) {
@@ -119,8 +120,8 @@ export class SavannahGameComponent implements OnInit {
   }
 
   checkResult(wordId: string): void {
-    this.isAnimationStart = false;
-    this.isAnimationBullet = false;
+    this.isAnimationEnd = true;
+    // this.isAnimationBullet = false;
     wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
   }
 
@@ -153,14 +154,14 @@ export class SavannahGameComponent implements OnInit {
   }
 
   getRandomCards(): void {
-    // this.isAnimationStart = true;
+    // this.isAnimationEnd = true;
     const randomActiveNativeWordPosition: number = this.getRandomNumber(this.randomCards.length);
 
     this.setActiveCard();
     this.soundForeignWord();
     this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
-    this.isAnimationStart = true;
+    this.isAnimationEnd = true;
   }
 
   audioPlay(name: string) {
