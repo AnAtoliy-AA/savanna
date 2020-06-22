@@ -1,4 +1,4 @@
-import { catchError, filter, map, shareReplay, switchMap } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,8 +15,6 @@ enum WordsPageNumber {
 export class SavannahGameService {
   constructor(public http: HttpClient) { }
 
-  // response: any;
-
   getWords(): Observable<SavannahGameCard[]> {
 
     return this.http.get(`https://afternoon-falls-25894.herokuapp.com/words?page=${WordsPageNumber.pageNumber}&group=${WordsPageNumber.wordsLevel}`)
@@ -31,19 +29,9 @@ export class SavannahGameService {
             }
           });
 
-
-          console.log('RESPONSE', response);
-          // console.log('WORDS',this.response[0].word);
-          console.log('WORDS ARRAY', wordsArray);
           return wordsArray;
         }),
         shareReplay(),
       )
-
   }
-
-  getForeignWord() {
-
-  }
-
 }

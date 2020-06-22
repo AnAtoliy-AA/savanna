@@ -1,7 +1,4 @@
-<!-- <p>savannah-game works!</p> -->
-<!-- <p>{ foreignWord }</p> -->
 <div class="savannah-game-wrapper">
-  <!-- <div class="close-button" (click)="closeGame()"></div> -->
   <div class="start-screen">
     <img src="../../../../assets/savannah-game-start-page.jpg" alt="">
 
@@ -21,7 +18,6 @@
       <p>The Savannah training helps you build your vocabulary.</p>
     </div>
     <div class="loader-container" [ngClass]="{hidden:isHiddenLoader}">
-      <!-- <div class="loader"></div> -->
       <div class="spinner-loader">
         <div class="spinner-inner spinner-one"></div>
         <div class="spinner-inner spinner-two"></div>
@@ -54,7 +50,7 @@
         {{ card.nativeWord }}</div>
     </div>
 
-    <div class="" [ngClass]="{bullet:isAnimationBullet}"></div>
+    <div class="" [ngClass]="{bullet:isAnimationBullet,animationStop:isAnimationStart}"></div>
     <div class="hunter"></div>
   </div>
 

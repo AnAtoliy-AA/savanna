@@ -1,22 +1,17 @@
 .savannah-game-wrapper {
   text-align: center;
 
-  // background-image: url('../../../../assets/savannah-game-start-page.jpg');
   .start-screen {
-    // background-image: url('../../../../assets/savannah-game-start-page.jpg');
-    // overflow: hidden;
     background-repeat: no-repeat;
     background-size: 100%;
     color: #fff;
 
-    //  opacity: 0.5;
     img {
       height: 100%;
       width: 100%;
       position: absolute;
       left: 0;
       top: 0;
-      // opacity: 0.5;
       z-index: -10;
     }
 
@@ -28,31 +23,7 @@
       margin-top: 10VH;
     }
 
-    // .loader {
-    //   margin-left: auto;
-    //   margin-right: auto;
-    //   border: 16px solid #f3f3f3;
-    //   /* Light grey */
-    //   border-top: 16px solid #3498db;
-    //   /* Blue */
-    //   border-radius: 50%;
-    //   width: 120px;
-    //   height: 120px;
-    //   animation: spin 2s linear infinite;
-    // }
-
-    // @keyframes spin {
-    //   0% {
-    //     transform: rotate(0deg);
-    //   }
-
-    //   100% {
-    //     transform: rotate(360deg);
-    //   }
-    // }
-
     .start-button {
-      // position: absolute;
       margin-top: 40vh;
       margin-bottom: 30vh;
     }
@@ -94,24 +65,19 @@
   }
 
   .game-container {
-    // position: relative;
-
     height: 100vH;
-
-  //  color: #fff;
     background-color: #fff;
+
     .lives-container {
       text-align: right;
-      // display: flex;
       margin-right: 10vw;
       margin-top: 10vh;
-      .lives {
 
+      .lives {
         height: 20px;
         width: 20px;
       }
     }
-
 
     .active-card-container {
       position: relative;
@@ -122,19 +88,9 @@
       .active-card {
         position: absolute;
         border: 2px solid green;
-
-        // text-align: center;
-        // -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
-        // transition: width 2s, height 2s, background-color 2s, transform 2s;
-
-
       }
 
       .activeCardFall {
-        // animation-name: active-card-fall;
-        // animation-duration: 2s;
-        // animation-timing-function: ease;
-        // animation-iteration-count: infinite;
         animation: active-card-fall 4s ease infinite;
       }
 
@@ -147,20 +103,7 @@
           top: 250px;
         }
       }
-
-
-
-      //   .active-card:hover {
-      //     background-color: #FFCCCC;
-      //     width: 200px;
-      //     height: 200px;
-      //     -webkit-transform: rotate(180deg);
-      //     transform: rotate(180deg);
-      //     transform: translateY(500);
-      // }
-
     }
-
 
     .native-words-container {
       display: flex;
@@ -170,7 +113,6 @@
       .native-word-card {
         border: 2px solid green;
         width: 100px;
-        // text-align: center;
       }
     }
 
@@ -182,6 +124,11 @@
       animation: bullet 1s linear;
     }
 
+    .animationStop {
+      animation-name: none;
+      // animation-play-state: paused;;
+    }
+
     @keyframes bullet {
       0% {
         bottom: 0;
@@ -191,17 +138,12 @@
         bottom: 300px;
       }
     }
-
-
   }
 
-  .animationStop {
-    animation-name: none;
-    // animation-play-state: paused;;
+  .final-screen {
+    position: absolute;
+    top: 20px;
+    left: 35vw;
   }
-
-  // .final-screen {
-  //   text-align: center;
-  // }
 
 }
