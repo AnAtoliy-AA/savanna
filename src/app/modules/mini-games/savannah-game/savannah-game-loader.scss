@@ -208,7 +208,7 @@
   }
 }
 
-#preloader {
+.preloader {
   position: fixed;
   top: -65px;
   left: 20px;
@@ -216,7 +216,7 @@
   height: 100%;
 }
 
-#loader {
+.loader {
   display: block;
   position: relative;
   left: 50%;
@@ -231,7 +231,7 @@
   animation: spin 2s linear infinite;
 }
 
-#loader:before {
+.loader:before {
   content: "";
   position: absolute;
   top: 5px;
@@ -245,7 +245,7 @@
   animation: spin 3s linear infinite;
 }
 
-#loader:after {
+.loader:after {
   content: "";
   position: absolute;
   top: 15px;
