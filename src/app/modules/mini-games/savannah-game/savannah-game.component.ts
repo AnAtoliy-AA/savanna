@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 
-import { SavannahGameCard } from './savannah-game-card.model'
+import { SavannahGameCard } from './savannah-game-card.model';
 import { SavannahGameService } from './savannah-game.service';
 import { first } from 'rxjs/operators';
 
@@ -23,15 +23,18 @@ const AUDIO_NAMES = {
   FAILURE: 'failure',
   SUCCESS: 'succes',
   CORRECT: 'correct',
-}
+};
 @Component({
   selector: 'app-savannah-game',
   templateUrl: './savannah-game.component.html',
-  styleUrls: ['./savannah-game.component.scss', './savannah-game-loader.scss', './savannah-game-title.scss']
+  styleUrls: [
+    './savannah-game.component.scss',
+    './savannah-game-loader.scss',
+    './savannah-game-title.scss',
+  ],
 })
 export class SavannahGameComponent implements OnInit {
-
-  constructor(private savannahGameService: SavannahGameService) { }
+  constructor(private savannahGameService: SavannahGameService) {}
 
   savannahGameCards: SavannahGameCard[];
   remainGameCards: SavannahGameCard[];
@@ -41,16 +44,15 @@ export class SavannahGameComponent implements OnInit {
   lives: number;
   rightWords: number;
   mistakes: number;
-  isHiddenDescription: boolean = false;
-  isHiddenLoader: boolean = true;
-  isHiddenButton: boolean = false;
-  isHiddenFinalScreen: boolean = true;
-  isAnimationStart: boolean = true;
-  isAnimationEnd: boolean = false;
-  isAnimationBullet: boolean = false;
+  isHiddenDescription = false;
+  isHiddenLoader = true;
+  isHiddenButton = false;
+  isHiddenFinalScreen = true;
+  isAnimationStart = true;
+  isAnimationEnd = false;
+  isAnimationBullet = false;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getDefaultAdditionalGameValues(): void {
     this.isHiddenDescription = true;
@@ -65,24 +67,29 @@ export class SavannahGameComponent implements OnInit {
 
   startGame(): void {
     this.getDefaultAdditionalGameValues();
-    this.savannahGameService.getWords()
+    this.savannahGameService
+      .getWords()
       .pipe(first())
-      .subscribe(words => {
+      .subscribe((words) => {
         this.savannahGameCards = words;
         this.remainGameCards = [...this.savannahGameCards];
         this.getForeignWord();
-      })
+      });
   }
 
   getForeignWord(): void {
     this.isHiddenLoader = true;
     this.setActiveCard();
-    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
+    this.randomCards = this.getThreeRandomCardsRandomNumbers(
+      this.savannahGameCards
+    );
     this.randomCards.push(this.activeCard);
   }
 
   setActiveCard(): void {
-    const activeCardIndex: number = this.getRandomNumber(this.remainGameCards.length);
+    const activeCardIndex: number = this.getRandomNumber(
+      this.remainGameCards.length
+    );
 
     this.activeCard = this.remainGameCards[activeCardIndex];
     this.isAnimationEnd = true;
@@ -97,12 +104,13 @@ export class SavannahGameComponent implements OnInit {
     return array;
   }
 
-
   getRandomNumber(maxValue: number): number {
     return Math.floor(Math.random() * Math.floor(maxValue));
   }
 
-  getThreeRandomCardsRandomNumbers(cards: SavannahGameCard[]): SavannahGameCard[] {
+  getThreeRandomCardsRandomNumbers(
+    cards: SavannahGameCard[]
+  ): SavannahGameCard[] {
     const ar = [...cards];
     const length = 3;
     const result = [];
@@ -122,7 +130,9 @@ export class SavannahGameComponent implements OnInit {
   checkResult(wordId: string): void {
     this.isAnimationEnd = true;
     // this.isAnimationBullet = false;
-    wordId === this.activeCard.wordId ? this.guessTheWord() : this.notGuessTheWord();
+    wordId === this.activeCard.wordId
+      ? this.guessTheWord()
+      : this.notGuessTheWord();
   }
 
   notGuessTheWord(): void {
@@ -155,11 +165,15 @@ export class SavannahGameComponent implements OnInit {
 
   getRandomCards(): void {
     // this.isAnimationEnd = true;
-    const randomActiveNativeWordPosition: number = this.getRandomNumber(this.randomCards.length);
+    const randomActiveNativeWordPosition: number = this.getRandomNumber(
+      this.randomCards.length
+    );
 
     this.setActiveCard();
     this.soundForeignWord();
-    this.randomCards = this.getThreeRandomCardsRandomNumbers(this.savannahGameCards);
+    this.randomCards = this.getThreeRandomCardsRandomNumbers(
+      this.savannahGameCards
+    );
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
     this.isAnimationEnd = true;
   }
@@ -176,12 +190,12 @@ export class SavannahGameComponent implements OnInit {
     this.isHiddenFinalScreen = false;
     this.isHiddenButton = false;
     this.activeCard = null;
-    this.livesArray.length > 0 ? this.audioPlay(AUDIO_NAMES.SUCCESS) : this.audioPlay(AUDIO_NAMES.FAILURE);
+    this.livesArray.length > 0
+      ? this.audioPlay(AUDIO_NAMES.SUCCESS)
+      : this.audioPlay(AUDIO_NAMES.FAILURE);
   }
 
-  closeGame() {
-
-  }
+  closeGame() {}
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
