@@ -33,8 +33,7 @@
 
   <div class="game-container" *ngIf="savannahGameCards && activeCard">
     <div class="close-button" (click)="closeGame()"></div>
-    <div class="sound-toggler-button">SOUND
-    </div>
+    <div class="sound-toggler-button">SOUND</div>
     <div class="lives">lives: {{ lives }}</div>
     <div class="lives-container">
       <img class="lives" *ngFor="let live of livesArray" src="../../../../assets/savannah-game-lives.png" alt="">
@@ -42,7 +41,10 @@
 
     <div class="active-card-container">
       <div class="active-card" [ngClass]="{activeCardFall:isAnimationEnd}">
-        {{ activeCard.foreignWord }} </div>
+        {{ activeCard.foreignWord }}
+        <div class="bullet" [ngClass]="{bulletActive:isAnimationBullet}"></div>
+      </div>
+
     </div>
 
     <div class="native-words-container">
@@ -50,7 +52,11 @@
         {{ card.nativeWord }}</div>
     </div>
 
-    <div class="" [ngClass]="{bullet:isAnimationBullet, animationStop:!isAnimationBullet}"></div>
+    <!-- <div class="" [ngClass]="{bullet:isAnimationBullet, animationStop:!isAnimationBullet}"></div> -->
+
+    <div>isAnimationBullet: {{isAnimationBullet}}</div>
+    <div>isAnimationEnd: {{isAnimationEnd}}</div>
+
     <div class="hunter"></div>
   </div>
 

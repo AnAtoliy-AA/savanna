@@ -34,7 +34,7 @@ const AUDIO_NAMES = {
   ],
 })
 export class SavannahGameComponent implements OnInit {
-  constructor(private savannahGameService: SavannahGameService) {}
+  constructor(private savannahGameService: SavannahGameService) { }
 
   savannahGameCards: SavannahGameCard[];
   remainGameCards: SavannahGameCard[];
@@ -49,10 +49,10 @@ export class SavannahGameComponent implements OnInit {
   isHiddenButton = false;
   isHiddenFinalScreen = true;
   isAnimationStart = true;
-  isAnimationEnd = false;
+  isAnimationEnd = true;
   isAnimationBullet = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   getDefaultAdditionalGameValues(): void {
     this.isHiddenDescription = true;
@@ -84,6 +84,7 @@ export class SavannahGameComponent implements OnInit {
       this.savannahGameCards
     );
     this.randomCards.push(this.activeCard);
+    // this.isAnimationBullet = false;
   }
 
   setActiveCard(): void {
@@ -92,8 +93,14 @@ export class SavannahGameComponent implements OnInit {
     );
 
     this.activeCard = this.remainGameCards[activeCardIndex];
-    this.isAnimationEnd = true;
+    // this.isAnimationEnd = true;
     //  this.isAnimationBullet = false;
+
+
+    // setTimeout(() => {
+    //   this.notGuessTheWord();
+
+    // }, 5000);
   }
 
   removeElementFromArray(array: SavannahGameCard[], value: SavannahGameCard) {
@@ -128,11 +135,13 @@ export class SavannahGameComponent implements OnInit {
   }
 
   checkResult(wordId: string): void {
-    this.isAnimationEnd = true;
-    // this.isAnimationBullet = false;
+    // this.isAnimationEnd = true;
+    //this.isAnimationBullet = false;
     wordId === this.activeCard.wordId
       ? this.guessTheWord()
       : this.notGuessTheWord();
+
+      // this.isAnimationEnd = false;
   }
 
   notGuessTheWord(): void {
@@ -140,31 +149,43 @@ export class SavannahGameComponent implements OnInit {
     this.lives--;
     this.livesArray.splice(0, 1);
     this.livesArray.length === 0 ? this.gameOver() : this.getRandomCards();
+    this.isAnimationEnd = false;
     this.mistakes++;
   }
 
   guessTheWord(): void {
+    console.log('guessTheWord: ');
+
     this.audioPlay(AUDIO_NAMES.CORRECT);
+
+    this.isAnimationEnd = false;
+
+
     this.isAnimationBullet = true;
+
+
+
     this.rightWords++;
     this.rightWords === 20 ? this.gameOver() : this.getNextRandomCards();
   }
 
-  soundForeignWord() {
-    const msg = new SpeechSynthesisUtterance();
-    const foreignWordText = this.activeCard.foreignWord;
+  soundForeignWord(): void {
+    // const msg = new SpeechSynthesisUtterance();
+    // const foreignWordText = this.activeCard.foreignWord;
 
-    msg.text = foreignWordText;
-    speechSynthesis.speak(msg);
+    // msg.text = foreignWordText;
+    // speechSynthesis.speak(msg);
   }
 
   getNextRandomCards(): void {
     this.removeElementFromArray(this.remainGameCards, this.activeCard);
     this.getRandomCards();
+    //this.isAnimationBullet = false;
   }
 
   getRandomCards(): void {
     // this.isAnimationEnd = true;
+    //this.isAnimationBullet = false;
     const randomActiveNativeWordPosition: number = this.getRandomNumber(
       this.randomCards.length
     );
@@ -175,10 +196,19 @@ export class SavannahGameComponent implements OnInit {
       this.savannahGameCards
     );
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
-    this.isAnimationEnd = true;
+    console.log('getRandomCards');
+    setTimeout(() => {
+      this.isAnimationEnd = true;
+
+    }, 1);
+
+    setTimeout(() => {
+   //   this.isAnimationBullet = false;
+
+    }, 1000);
   }
 
-  audioPlay(name: string) {
+  audioPlay(name: string): void {
     if (name) {
       const audio = new Audio(`../../../../assets/savannah-game-${name}.mp3`);
 
@@ -195,7 +225,7 @@ export class SavannahGameComponent implements OnInit {
       : this.audioPlay(AUDIO_NAMES.FAILURE);
   }
 
-  closeGame() {}
+  closeGame() { }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {

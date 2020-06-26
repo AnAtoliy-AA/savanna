@@ -80,9 +80,7 @@
     width: 20px;
   }
 }
-.animationStop {
-  animation-name: none;
-}
+
 .active-card-container {
   position: relative;
   width: 100px;
@@ -106,33 +104,42 @@
 }
 
 .activeCardFall {
-  animation: active-card-fall 4s ease infinite;
+  animation: active-card-fall 5s ease infinite;
   @keyframes active-card-fall {
     0% {
       top: 0;
     }
 
     100% {
-      top: 250px;
+      top: 350px;
     }
   }
 }
 
 .bullet {
   position: absolute;
+  //bottom: 0;
   width: 10px;
   height: 20px;
-  background-color: red;
+
+
+}
+
+.bulletActive {
   animation: bullet 1s linear;
+  background-color: red;
   @keyframes bullet {
     0% {
-      bottom: 0;
+      top: 0;
     }
 
     100% {
-      bottom: 300px;
+      top: 300px;
     }
   }
+}
+.animationStop {
+  animation-name: none;
 }
 .final-screen {
   position: absolute;

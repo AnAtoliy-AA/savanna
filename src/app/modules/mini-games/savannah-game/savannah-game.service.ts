@@ -1,8 +1,8 @@
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { SavannahGameApi } from './savannah-game-api.model';
 import { SavannahGameCard } from './savannah-game-card.model';
 
@@ -13,7 +13,16 @@ enum WordsPageNumber {
 
 @Injectable()
 export class SavannahGameService {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
+
+  mockData: SavannahGameCard[] = [
+    { wordId: '1', foreignWord: 'table', nativeWord: 'стол' },
+    { wordId: '2', foreignWord: 'table2', nativeWord: 'стол2' },
+    { wordId: '3', foreignWord: 'table3', nativeWord: 'стол3' },
+    { wordId: '4', foreignWord: 'table4', nativeWord: 'стол4' },
+    { wordId: '5', foreignWord: 'table5', nativeWord: 'стол5' },
+    { wordId: '6', foreignWord: 'table6', nativeWord: 'стол6' },
+  ];
 
   getWords(): Observable<SavannahGameCard[]> {
     return this.http
@@ -31,6 +40,10 @@ export class SavannahGameService {
           });
 
           return wordsArray;
+        }),
+        catchError((err) => {
+          console.warn('ERROR: ', err);
+          return of(this.mockData);
         }),
         shareReplay()
       );
