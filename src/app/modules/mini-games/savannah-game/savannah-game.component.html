@@ -6,14 +6,14 @@
       <div class="close-button" (click)="closeGame()"></div>
       <h1>SAVANNAH</h1>
       <div class="game-name">
-        <div class="game-name-letter">H</div>
-        <div class="game-name-letter">A</div>
+        <div class="game-name-letter" *ngFor="let letter of title">{{letter}}</div>
+        <!-- <div class="game-name-letter">A</div>
         <div class="game-name-letter">N</div>
         <div class="game-name-letter">N</div>
         <div class="game-name-letter">A</div>
         <div class="game-name-letter">V</div>
         <div class="game-name-letter">A</div>
-        <div class="game-name-letter">S</div>
+        <div class="game-name-letter">S</div> -->
       </div>
       <p>The Savannah training helps you build your vocabulary.</p>
     </div>

@@ -52,6 +52,8 @@ export class SavannahGameComponent implements OnInit {
   isAnimationEnd = true;
   isAnimationBullet = false;
 
+  title: string[] = 'SAVANAH'.split('').reverse();
+
   ngOnInit(): void { }
 
   getDefaultAdditionalGameValues(): void {
@@ -84,23 +86,22 @@ export class SavannahGameComponent implements OnInit {
       this.savannahGameCards
     );
     this.randomCards.push(this.activeCard);
-    // this.isAnimationBullet = false;
   }
 
+
+  fallingBlock: ReturnType<typeof setTimeout>;
+
   setActiveCard(): void {
+    this.correctWordSelected = false;
+
     const activeCardIndex: number = this.getRandomNumber(
       this.remainGameCards.length
     );
 
     this.activeCard = this.remainGameCards[activeCardIndex];
-    // this.isAnimationEnd = true;
-    //  this.isAnimationBullet = false;
-
-
-    // setTimeout(() => {
-    //   this.notGuessTheWord();
-
-    // }, 5000);
+    this.fallingBlock = setTimeout(() => {
+      this.ifGuessTheWord();
+    }, 5000);
   }
 
   removeElementFromArray(array: SavannahGameCard[], value: SavannahGameCard) {
@@ -135,13 +136,19 @@ export class SavannahGameComponent implements OnInit {
   }
 
   checkResult(wordId: string): void {
-    // this.isAnimationEnd = true;
-    //this.isAnimationBullet = false;
+    clearTimeout(this.fallingBlock);
+    this.correctWordSelected = true;
     wordId === this.activeCard.wordId
       ? this.guessTheWord()
       : this.notGuessTheWord();
+  }
 
-      // this.isAnimationEnd = false;
+  correctWordSelected: boolean = false;
+
+  ifGuessTheWord(): void {
+    if (!this.correctWordSelected) {
+      this.notGuessTheWord();
+    }
   }
 
   notGuessTheWord(): void {
@@ -154,38 +161,27 @@ export class SavannahGameComponent implements OnInit {
   }
 
   guessTheWord(): void {
-    console.log('guessTheWord: ');
-
     this.audioPlay(AUDIO_NAMES.CORRECT);
-
     this.isAnimationEnd = false;
-
-
     this.isAnimationBullet = true;
-
-
-
     this.rightWords++;
     this.rightWords === 20 ? this.gameOver() : this.getNextRandomCards();
   }
 
   soundForeignWord(): void {
-    // const msg = new SpeechSynthesisUtterance();
-    // const foreignWordText = this.activeCard.foreignWord;
+    const msg = new SpeechSynthesisUtterance();
+    const foreignWordText = this.activeCard.foreignWord;
 
-    // msg.text = foreignWordText;
-    // speechSynthesis.speak(msg);
+    msg.text = foreignWordText;
+    speechSynthesis.speak(msg);
   }
 
   getNextRandomCards(): void {
     this.removeElementFromArray(this.remainGameCards, this.activeCard);
     this.getRandomCards();
-    //this.isAnimationBullet = false;
   }
 
   getRandomCards(): void {
-    // this.isAnimationEnd = true;
-    //this.isAnimationBullet = false;
     const randomActiveNativeWordPosition: number = this.getRandomNumber(
       this.randomCards.length
     );
@@ -203,7 +199,7 @@ export class SavannahGameComponent implements OnInit {
     }, 1);
 
     setTimeout(() => {
-   //   this.isAnimationBullet = false;
+      this.isAnimationBullet = false;
 
     }, 1000);
   }
@@ -230,17 +226,19 @@ export class SavannahGameComponent implements OnInit {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (this.activeCard) {
-      if (event.key === KEY_CODE.NUMBER_ONE.toString()) {
-        this.checkResult(this.randomCards[CARD_NUMBER.FIRST].wordId);
-      }
-      if (event.key === KEY_CODE.NUMBER_TWO.toString()) {
-        this.checkResult(this.randomCards[CARD_NUMBER.SECOND].wordId);
-      }
-      if (event.key === KEY_CODE.NUMBER_THREE.toString()) {
-        this.checkResult(this.randomCards[CARD_NUMBER.THIRD].wordId);
-      }
-      if (event.key === KEY_CODE.NUMBER_FOUR.toString()) {
-        this.checkResult(this.randomCards[CARD_NUMBER.FOURTH].wordId);
+      switch (event.key) {
+        case KEY_CODE.NUMBER_ONE.toString():
+          this.checkResult(this.randomCards[CARD_NUMBER.FIRST].wordId);
+          break;
+        case KEY_CODE.NUMBER_TWO.toString():
+          this.checkResult(this.randomCards[CARD_NUMBER.SECOND].wordId);
+          break;
+        case KEY_CODE.NUMBER_THREE.toString():
+          this.checkResult(this.randomCards[CARD_NUMBER.THIRD].wordId);
+          break;
+        case KEY_CODE.NUMBER_FOUR.toString():
+          this.checkResult(this.randomCards[CARD_NUMBER.FOURTH].wordId);
+          break;
       }
     }
   }
