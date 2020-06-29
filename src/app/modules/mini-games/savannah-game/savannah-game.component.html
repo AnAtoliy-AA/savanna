@@ -1,21 +1,14 @@
 <div class="savannah-game-wrapper">
   <div class="start-screen">
-    <img src="../../../../assets/savannah-game-start-page.jpg" alt="">
+    <img class="start-screen-image" src="../../../../assets/savannah-game-start-page.jpg" alt="">
 
     <div class="start-description" [ngClass]="{hidden:isHiddenDescription}">
       <div class="close-button" (click)="closeGame()"></div>
       <h1>SAVANNAH</h1>
       <div class="game-name">
         <div class="game-name-letter" *ngFor="let letter of title">{{letter}}</div>
-        <!-- <div class="game-name-letter">A</div>
-        <div class="game-name-letter">N</div>
-        <div class="game-name-letter">N</div>
-        <div class="game-name-letter">A</div>
-        <div class="game-name-letter">V</div>
-        <div class="game-name-letter">A</div>
-        <div class="game-name-letter">S</div> -->
       </div>
-      <p>The Savannah training helps you build your vocabulary.</p>
+      <p class="start-screen-text">The Savannah training helps you build your vocabulary.</p>
     </div>
     <div class="loader-container" [ngClass]="{hidden:isHiddenLoader}">
       <div class="spinner-loader">
@@ -33,8 +26,9 @@
 
   <div class="game-container" *ngIf="savannahGameCards && activeCard">
     <div class="close-button" (click)="closeGame()"></div>
-    <div class="sound-toggler-button">SOUND</div>
-    <div class="lives">lives: {{ lives }}</div>
+    <div class="sound-toggler-container"  (click)="selectSound()">
+      <img class="sound-toggler-button" src="../../../../assets/savannah-game-voice-button.png" [ngClass]="{crossed:!isSoundSelected}" alt=""></div>
+    <!-- <div class="lives">lives: {{ lives }}</div> -->
     <div class="lives-container">
       <img class="lives" *ngFor="let live of livesArray" src="../../../../assets/savannah-game-lives.png" alt="">
     </div>
@@ -51,13 +45,9 @@
       <div *ngFor="let card of randomCards" class="native-word-card" (click)="checkResult(card.wordId)">
         {{ card.nativeWord }}</div>
     </div>
-
-    <!-- <div class="" [ngClass]="{bullet:isAnimationBullet, animationStop:!isAnimationBullet}"></div> -->
-
-    <div>isAnimationBullet: {{isAnimationBullet}}</div>
-    <div>isAnimationEnd: {{isAnimationEnd}}</div>
-
-    <div class="hunter"></div>
+    <div class="diamand-container">
+      <img class="diamand-image" src="../../../../assets/savannah-game-diamond3.png" alt="">
+    </div>
   </div>
 
   <div class="final-screen" [ngClass]="{hidden:isHiddenFinalScreen}">

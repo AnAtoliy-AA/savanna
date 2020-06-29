@@ -51,6 +51,7 @@ export class SavannahGameComponent implements OnInit {
   isAnimationStart = true;
   isAnimationEnd = true;
   isAnimationBullet = false;
+  isSoundSelected = true;
 
   title: string[] = 'SAVANAH'.split('').reverse();
 
@@ -172,8 +173,10 @@ export class SavannahGameComponent implements OnInit {
     const msg = new SpeechSynthesisUtterance();
     const foreignWordText = this.activeCard.foreignWord;
 
-    msg.text = foreignWordText;
-    speechSynthesis.speak(msg);
+    if (this.isSoundSelected) {
+      msg.text = foreignWordText;
+      speechSynthesis.speak(msg);
+    }
   }
 
   getNextRandomCards(): void {
@@ -192,24 +195,25 @@ export class SavannahGameComponent implements OnInit {
       this.savannahGameCards
     );
     this.randomCards.splice(randomActiveNativeWordPosition, 0, this.activeCard);
-    console.log('getRandomCards');
     setTimeout(() => {
       this.isAnimationEnd = true;
-
     }, 1);
 
     setTimeout(() => {
       this.isAnimationBullet = false;
-
     }, 1000);
   }
 
   audioPlay(name: string): void {
-    if (name) {
+    if (name && this.isSoundSelected) {
       const audio = new Audio(`../../../../assets/savannah-game-${name}.mp3`);
 
       audio.play();
     }
+  }
+
+  selectSound(): void {
+this.isSoundSelected = !this.isSoundSelected;
   }
 
   gameOver(): void {

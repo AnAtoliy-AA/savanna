@@ -7,7 +7,7 @@
   background-size: 100%;
   color: #fff;
 
-  img {
+  .start-screen-image {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -20,7 +20,7 @@
     font-size: 2em;
   }
 
-  p {
+  .start-screen-text {
     margin-top: 10vh;
   }
 
@@ -65,9 +65,39 @@
   transform: rotate(-45deg);
 }
 
+.sound-toggler-container {
+ text-align: left;
+ padding-top: 20px;
+ padding-left: 20px;
+ .sound-toggler-button {
+    height: 50px;
+  }
+}
+
+.crossed {
+  background:
+      linear-gradient(to top left,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) calc(50% - 0.8px),
+          rgba(0,0,0,1) 50%,
+          rgba(0,0,0,0) calc(50% + 0.8px),
+          rgba(0,0,0,0) 100%),
+      linear-gradient(to top right,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) calc(50% - 0.8px),
+          rgba(0,0,0,1) 50%,
+          rgba(0,0,0,0) calc(50% + 0.8px),
+          rgba(0,0,0,0) 100%);
+}
 .game-container {
   height: 100vh;
-  background-color: #fff;
+  margin-top: 0;
+  margin-left: 0;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../../../assets/savannah-game-background-page.jpg);
 }
 
 .lives-container {
@@ -89,16 +119,22 @@
 
   .active-card {
     position: absolute;
-    border: 2px solid green;
+    font-size: 2em;
   }
 }
 .native-words-container {
   display: flex;
   justify-content: space-around;
   padding-top: 40vh;
+  @media screen and (max-width: 600px) {
+flex-direction: column;
+padding-left: 10%;
+padding-bottom: 20px;
+font-size: 1.5em;
+  }
 
   .native-word-card {
-    border: 2px solid green;
+    font-size: 1.5em;
     width: 100px;
   }
 }
@@ -118,11 +154,9 @@
 
 .bullet {
   position: absolute;
-  //bottom: 0;
+  left: 40%;
   width: 10px;
   height: 20px;
-
-
 }
 
 .bulletActive {
@@ -141,8 +175,24 @@
 .animationStop {
   animation-name: none;
 }
+
+.diamand-container {
+  position: relative;
+  top: 100px;
+  left: 0%;
+  @media screen and (max-width: 600px) {
+    top: 0;
+  }
+
+  .diamand-image {
+    height: 100px;
+  }
+}
+
 .final-screen {
   position: absolute;
   top: 20px;
-  left: 35vw;
+  left: 40vw;
+  background-color: white;
+  border-radius: 20px;
 }
