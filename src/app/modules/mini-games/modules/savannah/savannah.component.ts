@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 
-import { SavannahGameCard } from './savannah-game-card.model';
-import { SavannahGameService } from './savannah-game.service';
+import { SavannahGameCard } from './savannah-card.model';
+import { SavannahGameService } from './savannah.service';
 import { first } from 'rxjs/operators';
 
 export enum KEY_CODE {
@@ -26,11 +26,11 @@ const AUDIO_NAMES = {
 };
 @Component({
   selector: 'app-savannah-game',
-  templateUrl: './savannah-game.component.html',
+  templateUrl: './savannah.component.html',
   styleUrls: [
-    './savannah-game.component.scss',
-    './savannah-game-loader.scss',
-    './savannah-game-title.scss',
+    './savannah.component.scss',
+    './savannah-loader.scss',
+    './savannah-title.scss',
   ],
 })
 export class SavannahGameComponent implements OnInit {

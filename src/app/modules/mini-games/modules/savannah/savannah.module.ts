@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { SavannahGameComponent } from './savannah-game.component';
-import { SavannahGameService } from './savannah-game.service';
+import { SavannahGameComponent } from './savannah.component';
+import { SavannahGameService } from './savannah.service';
 
 @NgModule({
   declarations: [SavannahGameComponent],

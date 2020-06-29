@@ -3,8 +3,8 @@ import { catchError, map, shareReplay } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SavannahGameApi } from './savannah-game-api.model';
-import { SavannahGameCard } from './savannah-game-card.model';
+import { SavannahGameApi } from './savannah-api.model';
+import { SavannahGameCard } from './savannah-card.model';
 
 enum WordsPageNumber {
   pageNumber = 2,
